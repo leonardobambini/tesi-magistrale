@@ -1,6 +1,6 @@
-resource "aws_db_instance" "webapp-db" {
+resource "aws_db_instance" "ecommerce-db" {
   allocated_storage    = 10
-  db_name              = "webapp-db"
+  db_name              = "ecommerce-db"
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"

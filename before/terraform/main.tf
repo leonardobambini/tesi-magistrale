@@ -14,11 +14,11 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
-module "webapp" {
-  source = "./modules/webapp"
-  alb_sgs = var.alb_sgs
-  alb_subnets = [module.networking.webapp_prod_subnet1_id, module.networking.webapp_prod_subnet2_id]
-  vpc_id = module.networking.webapp_prod_vpc_id
+module "ecommerce" {
+  source = "./modules/ecommerce"
+  alb_sgs = [module.networking.ecommerce_sg_id]
+  alb_subnets = [module.networking.ecommerce_prod_subnet1_id, module.networking.ecommerce_prod_subnet2_id]
+  vpc_id = module.networking.ecommerce_prod_vpc_id
 }
 
 module "networking" {

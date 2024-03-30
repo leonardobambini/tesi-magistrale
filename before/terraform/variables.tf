@@ -16,18 +16,14 @@ variable "secret_key" {
   sensitive = true
 }
 
-variable "alb_sgs" {
-  type = list
-}
-
 variable "db_username" {
-  description = "Webapp DB username"
+  description = "Ecommerce DB username"
   type = string
   sensitive = true
 }
 
 variable "db_password" {
-  description = "Webapp DB password"
+  description = "Ecommerce DB password"
   type = string
   sensitive = true
 }
