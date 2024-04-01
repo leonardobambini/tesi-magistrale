@@ -1,4 +1,6 @@
 *.tfstate*
 *.tfvars
 before/terraform/.terraform/*
+after/terraform/.terraform/*
 *.lock.hcl
+scripts/*
