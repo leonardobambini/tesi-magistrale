@@ -1,34 +1,56 @@
-resource "aws_instance" "ecommerce-prod-1" {
-  ami           = "ami-06cbfd22d52e19656"
+resource "aws_instance" "ecommerce-prd-1" {
+  ami           = "ami-04be05782cc558e6b"
   instance_type = "t2.micro"
   key_name = "ecommerce"
+  subnet_id = var.subnet_prd_1_id
+  associate_public_ip_address = true
+
+  user_data = <<EOF
+#!/bin/bash
+cd ecommerce
+sudo python3 ecommerce.py
+EOF
+
+  vpc_security_group_ids = var.alb_sgs
 
   tags = {
-    Name = "ecommerce1"
+    Name = "ecommerce-prd-1"
   }
 
   
 }
 
-resource "aws_instance" "ecommerce-prod-2" {
-  ami           = "ami-06cbfd22d52e19656"
+resource "aws_instance" "ecommerce-prd-2" {
+  ami           = "ami-04be05782cc558e6b"
   instance_type = "t2.micro"
   key_name = "ecommerce"
+  subnet_id = var.subnet_prd_2_id
+  associate_public_ip_address = true
+
+#   user_data = <<EOF
+# #!/bin/bash
+# sudo python3 ecommerce.py
+# EOF
+
+  vpc_security_group_ids = var.alb_sgs
 
   tags = {
-    Name = "ecommerce2"
+    Name = "ecommerce-prd-2"
   }
 
   
 }
 
 resource "aws_instance" "ecommerce-dev" {
-  ami           = "ami-06cbfd22d52e19656"
+  ami           = "ami-04be05782cc558e6b"
   instance_type = "t2.micro"
   key_name = "ecommerce"
+  subnet_id = var.subnet_dev_id
+
+  vpc_security_group_ids = var.security_groups_dev
 
   tags = {
-    Name = "ecommerce2"
+    Name = "ecommerce-dev"
   }
 
   
@@ -52,15 +74,15 @@ resource "aws_lb_target_group" "ecommerce-tg" {
   vpc_id   = var.vpc_id
 }
 
-resource "aws_lb_target_group_attachment" "ecommerce-prod-1-tg-attachment" {
+resource "aws_lb_target_group_attachment" "ecommerce-prd-1-tg-attachment" {
   target_group_arn = aws_lb_target_group.ecommerce-tg.id
-  target_id        = aws_instance.ecommerce-prod-1.id
+  target_id        = aws_instance.ecommerce-prd-1.id
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "ecommerce-prod-2-tg-attachment" {
+resource "aws_lb_target_group_attachment" "ecommerce-prd-2-tg-attachment" {
   target_group_arn = aws_lb_target_group.ecommerce-tg.id
-  target_id        = aws_instance.ecommerce-prod-2.id
+  target_id        = aws_instance.ecommerce-prd-2.id
   port             = 80
 }
 
