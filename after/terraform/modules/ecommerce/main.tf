@@ -51,8 +51,10 @@ resource "aws_instance" "ecommerce-dev" {
 
   tags = {
     Name = "ecommerce-dev"
+    Project = "ecommerce"
+    Team = "devops"
+    Environment = "dev"
   }
-
   
 }
 
@@ -64,6 +66,12 @@ resource "aws_lb" "ecommerce-alb" {
   subnets            = var.alb_subnets
 
   enable_deletion_protection = false
+
+  tags = {
+    Project = "ecommerce"
+    Team = "devops"
+    Environment = "prd"
+  }  
 
 }
 
@@ -137,8 +145,20 @@ resource "aws_autoscaling_group" "ecommerce_autoscaling_group" {
   }
 
   tag {
-    key                 = "App"
+    key                 = "Project"
     value               = "ecommerce"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "Team"
+    value               = "devops"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "Environment"
+    value               = "prd"
     propagate_at_launch = true
   }
 

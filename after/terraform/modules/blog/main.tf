@@ -13,6 +13,9 @@ EOF
 
   tags = {
     Name = "blog1"
+    Project = "blog"
+    Team = "devops"
+    Environment = "prd"
   }
 
 }
@@ -27,6 +30,9 @@ resource "aws_instance" "blog-dev" {
 
   tags = {
     Name = "blog2"
+    Project = "blog"
+    Team = "devops"
+    Environment = "prd"
   }
 
   

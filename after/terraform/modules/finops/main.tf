@@ -53,6 +53,12 @@ resource "aws_lambda_function" "underutilized_lambda" {
 
   runtime = "python3.12"
 
+  tags = {
+    Project = "infra"
+    Team = "finops"
+    Environment = "all"
+  }
+
 }
 
 resource "aws_lambda_function_event_invoke_config" "underutilized_lambda_event_invoke_config" {

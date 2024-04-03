@@ -3,6 +3,9 @@ resource "aws_vpc" "ecommerce_prd_vpc" {
 
   tags = {
     Name = "ecommerce_prd_vpc"
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "prd"
   }
 }
 
@@ -16,6 +19,9 @@ resource "aws_subnet" "ecommerce_prd_subnet1" {
 
   tags = {
     Name = "ecommerce_prd_subnet1"
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "prd"
   }
 }
 
@@ -29,6 +35,9 @@ resource "aws_subnet" "ecommerce_prd_subnet2" {
 
   tags = {
     Name = "ecommerce_prd_subnet2"
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "prd"
   }
 }
 
@@ -37,6 +46,9 @@ resource "aws_vpc" "ecommerce_dev_vpc" {
 
   tags = {
     Name = "ecommerce_dev_vpc"
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "dev"
   }
 }
 
@@ -49,11 +61,20 @@ resource "aws_subnet" "ecommerce_dev_subnet" {
 
   tags = {
     Name = "ecommerce_dev_subnet"
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "dev"
   }
 }
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.ecommerce_prd_vpc.id
+
+  tags = {
+    Project = "ecommerce"
+    Team = "network"
+    Environment = "prd"
+  }
 }
 
 resource "aws_security_group" "ecommerce-sg" {
@@ -113,6 +134,9 @@ resource "aws_vpc" "blog_prd_vpc" {
 
   tags = {
     Name = "blog_prd_vpc"
+    Project = "blog"
+    Team = "network"
+    Environment = "prd"
   }
 }
 
@@ -125,6 +149,9 @@ resource "aws_subnet" "blog_prd_subnet" {
 
   tags = {
     Name = "blog_prd_subnet"
+    Project = "blog"
+    Team = "network"
+    Environment = "prd"
   }
 }
 
@@ -133,6 +160,9 @@ resource "aws_vpc" "blog_dev_vpc" {
 
   tags = {
     Name = "blog_dev_vpc"
+    Project = "blog"
+    Team = "network"
+    Environment = "dev"
   }
 }
 
@@ -145,6 +175,9 @@ resource "aws_subnet" "blog_dev_subnet" {
 
   tags = {
     Name = "blog_dev_subnet"
+    Project = "blog"
+    Team = "network"
+    Environment = "dev"
   }
 }
  

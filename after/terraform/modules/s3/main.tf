@@ -3,6 +3,9 @@ resource "aws_s3_bucket" "ecommerce_s3" {
 
   tags = {
     Name        = "ecommerce_s3"
+    Project = "ecommerce"
+    Team = "devops"
+    Environment = "prd"
   }
 }
 
