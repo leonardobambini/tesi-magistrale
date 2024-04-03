@@ -102,6 +102,7 @@ resource "aws_iam_role" "underutilized_every_1_hour_role" {
 
 
 resource "aws_scheduler_schedule" "underutilized_every_1_hour" {
+  state = "DISABLED"
   name       = "underutilized_every_1_hour"
   group_name = "default"
 

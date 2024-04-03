@@ -47,3 +47,7 @@ module "finops" {
   source = "./modules/finops"
   alert_mail_recvr = var.alert_mail_recvr
 }
+
+module "s3" {
+  source = "./modules/s3"
+}
