@@ -130,8 +130,8 @@ resource "aws_launch_template" "ecommerce_launch_template" {
 
 resource "aws_autoscaling_group" "ecommerce_autoscaling_group" {
   name                      = "ecommerce_autoscaling_group2"
-  max_size                  = 0
-  min_size                  = 0
+  max_size                  = 3
+  min_size                  = 2
   health_check_grace_period = 300
   health_check_type         = "ELB"
   #desired_capacity          = 2
