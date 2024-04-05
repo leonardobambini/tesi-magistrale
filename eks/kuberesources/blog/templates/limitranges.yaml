@@ -1,0 +1,18 @@
+{{ $environment := .Values.environment }}
+{{ $project := .Values.project }}
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{.Values.project}}-limitrange-{{$environment}}
+  namespace: {{$project}}-{{$environment}}
+spec:
+  limits:
+  - default:
+      cpu: {{ .Values.limitRange.default | default "500m" }}
+    defaultRequest:
+      cpu: {{ .Values.limitRange.defaultRequest | default "500m" }}
+    max: 
+      cpu: {{ .Values.limitRange.max | default "1" }}
+    min:
+      cpu: {{ .Values.limitRange.min | default "100m" }}
+    type: Container

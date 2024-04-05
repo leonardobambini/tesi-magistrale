@@ -1,0 +1,32 @@
+{{ if .Values.deployments }}
+{{ $environment := .Values.environment }}
+{{ $project := .Values.project }}
+{{- range $deployment := .Values.deployments }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{$deployment.name}}-{{$environment}}
+  namespace: {{$project}}-{{$environment}}
+  labels:
+    app: {{$deployment.name}}-{{$environment}}
+spec:
+  replicas: {{$deployment.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{ $deployment.name }}-{{$environment}}
+  template:
+    metadata:
+      labels:
+        app: {{ $deployment.name }}-{{$environment}}
+    spec:
+      containers:
+        {{- range $container := $deployment.containers }}
+        - name: {{ $container.name }}
+          image: {{ $container.image }}
+          ports:
+            {{- range $port := $container.ports }}
+            - containerPort: {{ $port.containerPort }}
+            {{ end }}
+        {{ end }}
+{{ end }}
+{{ end }}

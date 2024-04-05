@@ -1,0 +1,22 @@
+{{ $environment := .Values.environment }}
+{{ $project := .Values.project }}
+{{- range $deployment := .Values.deployments }}
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{$deployment.name}}-{{$environment}}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{$deployment.name}}-{{$environment}}
+  minReplicas: {{$deployment.minReplicas | default "1"}}
+  maxReplicas: {{$deployment.maxReplicas | default "10"}}
+  metrics:
+  - type: Resource
+    resource:
+      name: {{ $deployment.metricHPA | default "cpu" }}
+      target:
+        type: Utilization
+        averageUtilization: {{ $deployment.targetHPA | default "50" }}
+{{ end }}

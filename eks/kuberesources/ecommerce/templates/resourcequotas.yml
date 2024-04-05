@@ -1,0 +1,18 @@
+{{ $environment := .Values.environment }}
+{{ $project := .Values.project }}
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{.Values.project}}-resourcequota-{{$environment}}
+  namespace: {{$project}}-{{$environment}}
+spec:
+  hard:
+    requests.cpu: {{ .Values.resourceQuota.hard.requests.cpu | default "2" }}
+    requests.memory: {{ .Values.resourceQuota.hard.requests.memory | default "2Gi" }}
+    limits.cpu: {{ .Values.resourceQuota.hard.limits.cpu | default "3" }}
+    limits.memory: {{ .Values.resourceQuota.hard.limits.memory | default "3Gi" }}
+  soft:
+    requests.cpu: {{ .Values.resourceQuota.soft.requests.cpu | default "1.5" }}
+    requests.memory: {{ .Values.resourceQuota.soft.requests.cpu | default "1.5Gi" }}
+    limits.cpu: {{ .Values.resourceQuota.soft.limits.cpu | default "2.5" }}
+    limits.memory: {{ .Values.resourceQuota.soft.limits.memory | default "2.5Gi" }}

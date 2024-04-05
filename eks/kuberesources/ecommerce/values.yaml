@@ -1,0 +1,15 @@
+resourceQuota:
+  hard:
+    limits:
+      memory:
+      cpu:
+    requests:
+      memory:
+      cpu:
+  soft:
+    limits:
+      memory:
+      cpu:
+    requests:
+      memory:
+      cpu:

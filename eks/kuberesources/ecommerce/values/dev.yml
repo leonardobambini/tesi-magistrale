@@ -1,0 +1,17 @@
+project: ecommerce
+environment: dev
+
+deployments:
+  - name: ecommerce
+    replicaCount: 3
+    containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+          - containerPort: 80
+
+limitRange:
+  default: 300m
+  defaultRequest: 300m
+  max: 1
+  min: 200m
