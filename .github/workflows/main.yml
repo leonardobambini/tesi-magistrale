@@ -25,18 +25,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-central-1
 
-    - name: Change directory
-      run: cd after/terraform
-
-    - name: Terraform Init
-      run: terraform init
-
     - name: Terraform Plan
       id: plan
       run: |
         ls
         cd after/terraform
         ls
+        terraform init
         terraform plan -out plan
 
     - name: Tag check
