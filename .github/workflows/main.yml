@@ -34,6 +34,9 @@ jobs:
     - name: Terraform Plan
       id: plan
       run: |
+        ls
+        cd after/terraform
+        ls
         terraform plan -out plan
 
     - name: Tag check
