@@ -33,10 +33,13 @@ jobs:
         ls
         terraform init
         terraform plan -out plan
+        pwd
 
     - name: Tag check
       id: tagcheck
-      run: terraform show -json plan
+      run: |
+        pwd
+        terraform show -json plan
       
 #    - name: Terraform Apply
 #      if: github.ref == 'refs/heads/main'
