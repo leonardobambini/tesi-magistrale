@@ -40,7 +40,9 @@ jobs:
       id: tagcheck
       run: |
         cd after/terraform
-        terraform show -json plan | jq -r ".planned_values.root_module.child_modules[].resources[] | [.address, .values.tags, .values.tags_all]"
+#       terraform show -json plan | jq -r ".planned_values.root_module.child_modules[].resources[] | [.address, .values.tags, .values.tags_all]"
+        terraform show -json plan > plan.json
+        python3 tag_check.py
 
       
 #    - name: Terraform Apply
