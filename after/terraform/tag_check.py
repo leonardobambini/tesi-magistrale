@@ -52,8 +52,7 @@ for obj in data["planned_values"]["root_module"]["child_modules"]:
                             exit(1)
                         else:
                             print(f"WARNING: Required tag {required_tag} not found in resource {matches_expr_address[0]}")
-                    print(matches_expr_tags[0])
-                    
+
                 if "Environment" in matches_expr_tags[0]:
                     if matches_expr_tags[0]["Environment"] not in allowed_environments:
                         if force_tag_strategy:
