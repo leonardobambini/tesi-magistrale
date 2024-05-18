@@ -32,12 +32,13 @@ jobs:
         cd after/terraform
         ls
         terraform init
-        terraform plan -out ../../plan
+        terraform plan -out plan
         pwd
 
     - name: Tag check
       id: tagcheck
       run: |
+        cd after/terraform
         pwd
         terraform show -json plan
       
