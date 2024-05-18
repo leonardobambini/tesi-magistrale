@@ -40,9 +40,6 @@ jobs:
       id: tagcheck
       run: |
         cd after/terraform
-        pwd
-        jq --version
-        cat
         terraform show -json plan | jq -r ".planned_values.root_module.child_modules[].resources[] | [.address, .values.tags, .values.tags_all]"
 
       
