@@ -4,7 +4,7 @@ from jsonpath_ng import jsonpath, parse
 
 required_tags = ["Project", "Team", "Environment"]
 allowed_environments = ["DEV", "INT", "PRD"]
-force_tag_strategy = True
+force_tag_strategy = False
 
 
 
