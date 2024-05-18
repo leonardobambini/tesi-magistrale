@@ -32,7 +32,7 @@ jobs:
         cd after/terraform
         ls
         terraform init
-        terraform plan
+        terraform plan -out plan
 
     - name: Tag check
       id: tagcheck
