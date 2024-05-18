@@ -47,8 +47,10 @@ jobs:
     - name: Infracost analysis
       id: infracost
       run: |
+        cd after/terraform
         curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
         infracost configure set api_key ico-pGji1tGXoD7boNip3CsIPyIxAz2zDHIY
+        infracost breakdown --path .
         
         
 #       terraform show -json plan | jq -r ".planned_values.root_module.child_modules[].resources[] | [.address, .values.tags, .values.tags_all]"
