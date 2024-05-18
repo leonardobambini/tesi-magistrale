@@ -4,7 +4,7 @@ from jsonpath_ng import jsonpath, parse
 
 required_tags = ["Project", "Team", "Environment"]
 allowed_environments = ["DEV", "INT", "PRD"]
-force_tag_strategy = True
+force_tag_strategy = False
 
 
 
@@ -52,6 +52,15 @@ for obj in data["planned_values"]["root_module"]["child_modules"]:
                             exit(1)
                         else:
                             print(f"WARNING: Required tag {required_tag} not found in resource {matches_expr_address[0]}")
+                    print(matches_expr_tags[0])
+                    
+                if "Environment" in matches_expr_tags[0]:
+                    if matches_expr_tags[0]["Environment"] not in allowed_environments:
+                        if force_tag_strategy:
+                            print(f"ERROR: Required tag Environment has a value {matches_expr_tags[0]['Environment']} not allowed ({allowed_environments})")
+                            exit(1)
+                        else:
+                            print(f"WARNING: Required tag Environment has a value {matches_expr_tags[0]['Environment']} not allowed ({allowed_environments})")
 
         # if matches_expr_tags is None:
         #     print("AAAAAAAAA " + matches_expr_tags[0])
