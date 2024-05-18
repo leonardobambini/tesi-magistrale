@@ -48,10 +48,10 @@ for obj in data["planned_values"]["root_module"]["child_modules"]:
                 for required_tag in required_tags:
                     if required_tag not in matches_expr_tags[0].keys():
                         if force_tag_strategy:
-                            print(f"ERROR: Required tag {required_tag} not found in resource {matches_expr_address}")
+                            print(f"ERROR: Required tag {required_tag} not found in resource {matches_expr_address[0]}")
                             exit(1)
                         else:
-                            print(f"WARNING: Required tag {required_tag} not found in resource {matches_expr_address}")
+                            print(f"WARNING: Required tag {required_tag} not found in resource {matches_expr_address[0]}")
 
         # if matches_expr_tags is None:
         #     print("AAAAAAAAA " + matches_expr_tags[0])
