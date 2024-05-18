@@ -1,5 +1,4 @@
 *.tfstate*
-*.tfvars
 before/terraform/.terraform/*
 after/terraform/.terraform/*
 eks/terraform/.terraform/*
