@@ -4,17 +4,17 @@ variable "region" {
   type = string
 }
 
-variable "access_key" {
-  description = "AWS auth"
-  sensitive = true
-  type = string
-}
+# variable "access_key" {
+#   description = "AWS auth"
+#   sensitive = true
+#   type = string
+# }
 
-variable "secret_key" {
-  description = "AWS auth"
-  type = string
-  sensitive = true
-}
+# variable "secret_key" {
+#   description = "AWS auth"
+#   type = string
+#   sensitive = true
+# }
 
 variable "db_username" {
   description = "Ecommerce DB username"
