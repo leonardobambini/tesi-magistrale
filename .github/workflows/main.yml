@@ -55,6 +55,7 @@ jobs:
     - name: Terraform Apply
       id: apply
       run: |
+        cd after/terraform
         terraform apply
         
 #       terraform show -json plan | jq -r ".planned_values.root_module.child_modules[].resources[] | [.address, .values.tags, .values.tags_all]"
